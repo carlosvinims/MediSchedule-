@@ -16,9 +16,9 @@ return new class extends Migration
             $table->foreignId('specialty_id')->constrained('specialties')->cascadeOnDelete();
             $table->string('name');
             $table->string('crm');
-            $table->integer('phone');
-            $table->time(' work_start_time');
-            $table->time(' work_end_time');
+            $table->string('phone');
+            $table->time('work_start_time');
+            $table->time('work_end_time');
             $table->string('slot_duration');
             $table->boolean('is_active');
             $table->timestamps();
