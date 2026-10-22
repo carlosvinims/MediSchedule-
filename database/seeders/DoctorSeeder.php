@@ -22,7 +22,7 @@ class DoctorSeeder extends Seeder
 
         $pediatria = Specialty::where('name', 'Pediatria')->first();
 
-        $ginecologista = Specialty::where('name', 'Ginecologista')->first();
+        $ginecologia = Specialty::where('name', 'Ginecologia')->first();
 
                 Doctor::updateOrCreate(
             [ 
@@ -77,7 +77,7 @@ class DoctorSeeder extends Seeder
                 'crm' => 'CRM/RJ 856395',
             ],
             [
-                'specialty_id' => $ginecologista->id ,
+                'specialty_id' => $ginecologia->id ,
                 'name' => 'Dra. Leidiane Almeida',
                 'phone' => '24999985695',
                 'work_start_time' => '10:00:00' ,
