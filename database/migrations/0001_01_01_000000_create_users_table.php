@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('cpf')->unique();
             $table->string('phone');
-            $table->string('role');
+            $table->string('role')->default('patient');
             $table->rememberToken();
             $table->timestamps();
         });
