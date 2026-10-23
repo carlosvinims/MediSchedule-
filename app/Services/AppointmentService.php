@@ -1,7 +1,7 @@
 <?php
 namespace App\Services;
 
-use App\Models\Commitment;
+use App\Models\Appointment;
 use App\Models\User;
 use Carbon\Carbon;
 use Exception;
@@ -9,7 +9,7 @@ use Exception;
 class AppointmentService
 {
    
-    public function schedule(array $data): Commitment
+    public function schedule(array $data):  Appointment
     {
         $appointmentTime = Carbon::parse($data['appointment_time']);
 
@@ -19,7 +19,7 @@ class AppointmentService
         }
 
         // Validar horário na agenda do médico
-        $doctorHasConflict = Commitment::where('doctor_id', $data['doctor_id'])
+        $doctorHasConflict = Appointment::where('doctor_id', $data['doctor_id'])
             ->where('appointment_time', $appointmentTime)
             ->where('status', '!=', 'canceled')
             ->exists();
@@ -29,7 +29,7 @@ class AppointmentService
         }
 
         //Validar choque de horário na agenda do paciente
-        $patientHasConflict = Commitment::where('user_id', $data['user_id'])
+        $patientHasConflict = Appointment::where('user_id', $data['user_id'])
             ->where('appointment_time', $appointmentTime)
             ->where('status', '!=', 'canceled')
             ->exists();
@@ -39,7 +39,7 @@ class AppointmentService
         }
 
         // Registrar a consulta
-        return Commitment::create([
+        return Appointment::create([
             'doctor_id'        => $data['doctor_id'],
             'user_id'          => $data['user_id'],
             'appointment_time' => $appointmentTime,
@@ -48,9 +48,9 @@ class AppointmentService
     }
 
     
-    public function cancel(int $appointmentId, User $userRequesting): Commitment
+    public function cancel(int $appointmentId, User $userRequesting): Appointment
     {
-        $appointment = Commitment::findOrFail($appointmentId);
+        $appointment = Appointment::findOrFail($appointmentId);
 
         // Validar quem está solicitando o cancelamento 
         $isPatient = $appointment->user_id === $userRequesting->id;
