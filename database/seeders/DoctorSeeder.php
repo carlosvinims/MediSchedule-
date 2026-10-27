@@ -14,15 +14,15 @@ class DoctorSeeder extends Seeder
      */
     public function run(): void
     {
-        $cardiologia = Specialty::where('name', 'Cardiologia')->first();
+        $cardiologia = Specialty::where('name', 'Cardiologista')->first();
 
-        $dermatologia = Specialty::where('name', 'Dermatologia')->first();
+        $dermatologia = Specialty::where('name', 'Dermatologista')->first();
 
-        $ortopedia = Specialty::where('name', 'Ortopedia')->first();
+        $ortopedia = Specialty::where('name', 'Ortopedista')->first();
 
-        $pediatria = Specialty::where('name', 'Pediatria')->first();
+        $pediatria = Specialty::where('name', 'Pediatra')->first();
 
-        $ginecologia = Specialty::where('name', 'Ginecologia')->first();
+        $ginecologia = Specialty::where('name', 'Ginecologista')->first();
 
                 Doctor::updateOrCreate(
             [ 
@@ -37,6 +37,8 @@ class DoctorSeeder extends Seeder
                 'slot_duration' => '30 minutos',
                 'is_active' => true,
             ],
+                );
+                Doctor::updateOrCreate(
             [ 
                 'crm' => 'CRM/SP 654321',
             ],
@@ -49,6 +51,8 @@ class DoctorSeeder extends Seeder
                 'slot_duration' => '30 minutos',
                 'is_active' => true,
             ],
+                );
+                Doctor::updateOrCreate(
             [ 
                 'crm' => 'CRM/RJ 145263',
             ],
@@ -61,6 +65,8 @@ class DoctorSeeder extends Seeder
                 'slot_duration' => '30 minutos',
                 'is_active' => true,
             ],
+                );
+                Doctor::updateOrCreate(
             [ 
                 'crm' => 'CRM/SP 857649',
             ],
@@ -73,6 +79,8 @@ class DoctorSeeder extends Seeder
                 'slot_duration' => '30 minutos',
                 'is_active' => true,
             ],
+                );
+                Doctor::updateOrCreate(
             [ 
                 'crm' => 'CRM/RJ 856395',
             ],

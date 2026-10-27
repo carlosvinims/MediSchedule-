@@ -11,8 +11,6 @@ class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
 
-    protected static ?string $password;
-
     /**
      * Seed the application's database.
      */
@@ -25,7 +23,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Administrador',
                 'email' => 'admin@medischedule.test',
                 'email_verified_at' => now(),
-                'password' => static::$password ??= Hash::make('admin12345678'),
+                'password' => Hash::make('admin12345678'),
                 'cpf' => '12345678912',
                 'phone' => '24999999999',
                 'role' => 'admin',
@@ -34,7 +32,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Paciente Teste',
                 'email' => 'patient@medischedule.test',
                 'email_verified_at' => now(),
-                'password' => static::$password ??= Hash::make('patient12345678'),
+                'password' => Hash::make('patient12345678'),
                 'cpf' => '24856257854',
                 'phone' => '24999888888',
                 'role' => 'patient',

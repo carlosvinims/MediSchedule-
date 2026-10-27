@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return auth()->check()
@@ -23,4 +24,6 @@ Route::middleware('guest')->group(function () {
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
-
+Route::middleware('auth')->group(function() {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
