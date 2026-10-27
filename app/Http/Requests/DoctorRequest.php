@@ -23,7 +23,13 @@ class DoctorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'specialty_id' => ['required', 'integer', 'exists:specialties,id'],
+            'name' => ['required', 'string', 'min:5', 'max:255'],
+            'crm'  => ['required', 'string', 'min:1', 'max:10', 'unique:doctors,crm'],
+            'phone' => ['required', 'string', 'min:9', 'max:15'],
+            'work_start_time' => ['nullable', 'date_format:H:i'],
+            'work_end_time' => ['nullable', 'date_format:H:i', 'after:work_start_time'],
+            'slot_duration' => ['required','string', 'min:5', 'max:100'],
         ];
     }
 }

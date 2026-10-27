@@ -48,8 +48,7 @@
         
         <div class="relative">
           <img src="{{ asset('images/image.png') }}" class="w-[400px] h-full hidden rounded-r-2xl md:block object-cover"/>
-          <div
-            class="absolute hidden bottom-10 right-6 p-6 bg-white bg-opacity-30 backdrop-blur-sm rounded drop-shadow-lg md:block">
+          <div class="absolute hidden bottom-10 left-6 right-6 p-6 bg-white bg-opacity-30 backdrop-blur-sm rounded drop-shadow-lg md:block ">
             <span class="text-white text-xl"><strong>Sua saúde, nosso cuidado!</strong><br />Agende suas consultas na MediCare Saúde de forma rápida, simples e prática.
             <br />Mais facilidade para você cuidar do que realmente importa.
             </span>

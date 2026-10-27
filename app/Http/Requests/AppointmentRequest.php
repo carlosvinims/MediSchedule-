@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AppointmentRequest extends FormRequest
 {
@@ -12,7 +13,7 @@ class AppointmentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return $this->user() !== null;
     }
 
     /**
@@ -23,7 +24,12 @@ class AppointmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'patient_id' => ['required', 'integer', Rule::exists('users', 'id')->where('role', 'patient')],
+            'doctor_id' => ['required', 'integer', 'exists:doctors,id'],
+            'appontment_date' => ['required', 'date', 'after:now'],
+            'status' => ['required', 'string', 'in:schedule,completed,canceled,absent'],
+            'notes' => ['nullable', 'string'],
+            'canceled_at' => ['nullable', 'date'],
         ];
     }
 }

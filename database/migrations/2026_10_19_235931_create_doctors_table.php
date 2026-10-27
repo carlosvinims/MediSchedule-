@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('crm');
             $table->string('phone');
-            $table->time('work_start_time');
-            $table->time('work_end_time');
+            $table->time('work_start_time')->nullable();
+            $table->time('work_end_time')->nullable();
             $table->string('slot_duration');
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

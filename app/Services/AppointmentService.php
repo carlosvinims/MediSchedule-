@@ -11,16 +11,16 @@ class AppointmentService
    
     public function schedule(array $data):  Appointment
     {
-        $appointmentTime = Carbon::parse($data['appointment_time']);
+        $appointmentDate = Carbon::parse($data['appointment_date']);
 
         //Validar horário retroativo
-        if ($appointmentTime->isPast()) {
+        if ($appointmentDate->isPast()) {
             throw new Exception("Não é possível agendar consultas em datas passadas.");
         }
 
         // Validar horário na agenda do médico
         $doctorHasConflict = Appointment::where('doctor_id', $data['doctor_id'])
-            ->where('appointment_time', $appointmentTime)
+            ->where('appointment_date', $appointmentDate)
             ->where('status', '!=', 'canceled')
             ->exists();
 
@@ -29,8 +29,8 @@ class AppointmentService
         }
 
         //Validar choque de horário na agenda do paciente
-        $patientHasConflict = Appointment::where('user_id', $data['user_id'])
-            ->where('appointment_time', $appointmentTime)
+        $patientHasConflict = Appointment::where('patient_id', $data['patient_id'])
+            ->where('appointment_date', $appointmentDate)
             ->where('status', '!=', 'canceled')
             ->exists();
 
@@ -41,8 +41,8 @@ class AppointmentService
         // Registrar a consulta
         return Appointment::create([
             'doctor_id'        => $data['doctor_id'],
-            'user_id'          => $data['user_id'],
-            'appointment_time' => $appointmentTime,
+            'patient_id'          => $data['patient_id'],
+            'appointment_date' => $appointmentDate,
             'status'           => 'scheduled',
         ]);
     }
@@ -54,7 +54,7 @@ class AppointmentService
 
         // Validar quem está solicitando o cancelamento 
         $isPatient = $appointment->user_id === $userRequesting->id;
-        $isDoctor = $appointment->doctor->user_id ?? null === $userRequesting->id;
+        $isDoctor = ($appointment->doctor->user_id ?? null) === $userRequesting->id;
         $isAdmin = $userRequesting->role === 'admin';
 
         if (!$isPatient && !$isDoctor && !$isAdmin) {
@@ -62,15 +62,16 @@ class AppointmentService
         }
 
         // Validar a regra das 24 horas de antecedência
-        $hoursDiff = now()->diffInHours($appointment->appointment_time, false);
-
-        if ($hoursDiff < 24) {
+        if ($appointment->status === 'canceled') { throw new Exception("Esta consulta já foi cancelada.");
+        }
+        if (now()->addHours(24)->greaterThan($appointment->appointment_date)) {
             throw new Exception("A consulta só pode ser cancelada com no mínimo 24 horas de antecedência.");
         }
 
         // Atualizar o status
         $appointment->update([
-            'status' => 'canceled'
+            'status' => 'canceled',
+            'canceled_at' => now(),
         ]);
 
         return $appointment;
