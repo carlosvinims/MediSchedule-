@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
@@ -28,7 +29,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $request->boolean('remember')))
             {
                 $request->session()->regenerate();
-                return redirect()->intended(route('dashboard.index'))->with('success', 'Login realizado com sucesso!');
+                return redirect()->intended(route('dashboard'))->with('success', 'Login realizado com sucesso!');
             }
 
             return back()->withErrors(['email' => 'E-mail ou senha inválidos.'])->onlyInput('email');
@@ -54,7 +55,7 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('dashboard.index')->with('success', 'Conta criada com sucesso.');
+        return redirect()->route('dashboard')->with('success', 'Conta criada com sucesso.');
     }
 
     public function logout(\Illuminate\Http\Request $request): RedirectResponse
