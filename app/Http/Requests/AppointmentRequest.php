@@ -26,8 +26,8 @@ class AppointmentRequest extends FormRequest
         return [
             'patient_id' => ['required', 'integer', Rule::exists('users', 'id')->where('role', 'patient')],
             'doctor_id' => ['required', 'integer', 'exists:doctors,id'],
-            'appontment_date' => ['required', 'date', 'after:now'],
-            'status' => ['required', 'string', 'in:schedule,completed,canceled,absent'],
+            'appointment_date' => ['required', 'date', 'after:now'],
+            'status' => ['required', 'string', 'in:scheduled,completed,canceled,absent'],
             'notes' => ['nullable', 'string'],
             'canceled_at' => ['nullable', 'date'],
         ];
