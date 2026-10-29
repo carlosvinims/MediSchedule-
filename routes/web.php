@@ -8,7 +8,7 @@ use App\Http\Controllers\AppointmentController;
 
 Route::get('/', function () {
     return auth()->check()
-    ? redirect()->route('deashboard.index')
+    ? redirect()->route('appointments.index')
     : redirect()->route('login');
 });
 

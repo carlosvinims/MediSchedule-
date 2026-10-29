@@ -30,13 +30,13 @@ class AppointmentController extends Controller
             'canceled'  => 'Cancelada',
             'absent'    => 'Ausente',
         ];
-        
+
         $appointments = Appointment::where('patient_id', auth()->id())->get();
         
         return view('appointments.index', compact('appointments', 'statuses'));
     }
 
-    public function create(): View
+    public function create(Request $request): View
     {
         $doctors = Doctor::with('specialty')
         ->where('is_active', true)
