@@ -48,7 +48,7 @@ class DoctorSeeder extends Seeder
                 'phone' => '24999555555',
                 'work_start_time' => '08:00:00' ,
                 'work_end_time' => '13:00:00',
-                'slot_duration' => '30 minutos',
+                'slot_duration' => '30',
                 'is_active' => true,
             ],
                 );
@@ -62,7 +62,7 @@ class DoctorSeeder extends Seeder
                 'phone' => '24999666666',
                 'work_start_time' => '13:00:00' ,
                 'work_end_time' => '17:00:00',
-                'slot_duration' => '30 minutos',
+                'slot_duration' => '30',
                 'is_active' => true,
             ],
                 );
@@ -76,7 +76,7 @@ class DoctorSeeder extends Seeder
                 'phone' => '24999777777',
                 'work_start_time' => '08:00:00' ,
                 'work_end_time' => '17:00:00',
-                'slot_duration' => '30 minutos',
+                'slot_duration' => '40',
                 'is_active' => true,
             ],
                 );
@@ -90,7 +90,7 @@ class DoctorSeeder extends Seeder
                 'phone' => '24999985695',
                 'work_start_time' => '10:00:00' ,
                 'work_end_time' => '16:00:00',
-                'slot_duration' => '30 minutos',
+                'slot_duration' => '60',
                 'is_active' => true,
             ]
         );

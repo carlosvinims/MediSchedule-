@@ -43,7 +43,7 @@ class AppointmentController extends Controller
         ->orderBy('name')
         ->get();
 
-        $availiableSlots = [];
+        $availableSlots = [];
         $selectedDoctorId = $request->query('doctor_id');
         $selectedDate = $request->query('appointment_day');
         $availabilityError = null;
@@ -55,14 +55,14 @@ class AppointmentController extends Controller
             ]);
 
             try {
-                $availiableSlots = $this->appointmentService->availableSlots($selectedDoctorId,
+                $availableSlots = $this->appointmentService->availableSlots($selectedDoctorId,
                 $selectedDate, auth()->id());
             } catch (DomainException $exception) {
                 $availabilityError = $exception->getMessage();
             }
         }
 
-        return view('appointments.create', compact('doctors', 'availiableSlots','selectedDoctorId','selectedDate','availabilityError'));
+        return view('appointments.create', compact('doctors', 'availableSlots','selectedDoctorId','selectedDate','availabilityError'));
     }
     
 
