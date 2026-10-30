@@ -55,7 +55,7 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('dashboard')->with('success', 'Conta criada com sucesso.');
+        return redirect()->route('home')->with('success', 'Conta criada com sucesso.');
     }
 
     public function logout(\Illuminate\Http\Request $request): RedirectResponse

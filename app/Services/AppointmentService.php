@@ -14,11 +14,7 @@ class AppointmentService
     /**
      * Retorna os horários disponíveis para um médico em uma data.
      */
-    public function availableSlots(
-        int $doctorId,
-        string $date,
-        int $patientId
-    ): array {
+    public function availableSlots(int $doctorId,string $date,int $patientId): array {
         $doctor = Doctor::where('is_active', true)->find($doctorId);
 
         if (!$doctor) {

@@ -37,7 +37,7 @@
                   border-r border-gray-200 bg-white p-6 transition-transform duration-300
                   md:translate-x-0">
 
-        <a href="{{ route('dashboard') }}"
+        <a href="{{ route('home') }}"
            class="flex items-center gap-3">
             <div class="flex h-12 w-12 items-center justify-center rounded-2xl
                         bg-medicare-600 text-2xl text-white">
@@ -59,14 +59,8 @@
             </p>
 
             <nav class="space-y-2">
-                <a href="{{ route('dashboard') }}"
-                   class="flex items-center gap-3 rounded-xl px-4 py-3
-                   {{ request()->routeIs('dashboard') ? 'bg-medicare-50 font-semibold text-medicare-700' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900' }}">
-                    <span>▦</span>
-                    Dashboard
-                </a>
 
-                <a href="{{ url('/doctors') }}"
+                <a href="{{ 'doctors.index' }}"
                    class="flex items-center gap-3 rounded-xl px-4 py-3
                    {{ request()->is('doctors*') ? 'bg-medicare-50 font-semibold text-medicare-700' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900' }}">
                     <span>♙</span>
